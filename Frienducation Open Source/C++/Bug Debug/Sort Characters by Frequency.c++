@@ -1,14 +1,11 @@
-// Question Link: https://leetcode.com/problems/sort-characters-by-frequency/
 class Solution
 {
 public:
     string frequencySort(string s)
     {
-
         string res = "";
 
         map<char, int> mp;
-
         priority_queue<pair<int, char>> pq;
 
         int n = s.length();
@@ -19,17 +16,15 @@ public:
 
         for (auto e : mp)
         {
-            // check
-            pq.push({e.first, e.second});
+            pq.push({e.second, e.first}); // Corrected order: frequency first, character second
         }
 
         while (!pq.empty())
         {
-
             pair<int, char> p = pq.top();
-            // add
+            pq.pop(); // Pop the element
 
-            while (p.first++)
+            for (int i = 0; i < p.first; i++)
             {
                 res += p.second;
             }
